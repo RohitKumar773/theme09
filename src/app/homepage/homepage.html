@@ -1,3 +1,82 @@
+<header class="w-full bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+    <div class="w-full border-b border-gray-50 py-4 flex flex-col items-center justify-center bg-white">
+        <a href="#" class="flex flex-col items-center gap-1 group">
+            <div class="flex items-center gap-2">
+                <svg class="h-6 w-6 text-amber-700" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v17m0-17L7 8m5-5l5 5m-5 12h5m-5 0H7m0 0a3 3 0 110-6 3 3 0 010 6zm10 0a3 3 0 110-6 3 3 0 010 6z" />
+                </svg>
+                <span class="text-xl font-bold tracking-[0.2em] text-gray-800 font-serif uppercase">VAKIL UNCLE</span>
+            </div>
+            <span class="text-[9px] uppercase tracking-[0.3em] text-amber-600 font-medium">Premium Law Firm &
+                Advisors</span>
+        </a>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-center">
+        <nav class="hidden md:flex items-center gap-10">
+
+            <a href="#"
+                class="text-xs uppercase tracking-widest font-semibold text-gray-600 hover:text-amber-600 transition-colors py-4 border-b-2 border-transparent">
+                Home
+            </a>
+
+            <a href="#about"
+                class="text-xs uppercase tracking-widest font-semibold text-gray-600 hover:text-amber-600 transition-colors py-4 border-b-2 border-transparent">
+                About Us
+            </a>
+
+            <a href="#practicearea"
+                class="text-xs uppercase tracking-widest font-semibold text-gray-600 hover:text-amber-600 transition-colors py-4 border-b-2 border-transparent">
+                Practice Area
+            </a>
+
+            <div class="relative">
+                <button (click)="toggleDropdown('Insights', $event)"
+                    class="flex items-center gap-1 text-xs uppercase tracking-widest font-semibold text-gray-600 hover:text-amber-600 focus:outline-none py-4 border-b-2 border-transparent">
+                    <span>Insights</span>
+                    <svg class="h-3 w-3 transition-transform duration-200"
+                        [class.rotate-180]="activeDropdown() === 'Insights'" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+
+                @if (activeDropdown() === 'Insights') {
+                <div
+                    class="absolute left-1/2 -translate-x-1/2 mt-1 w-48 rounded-md border border-gray-100 bg-white p-1 shadow-lg animate-in fade-in slide-in-from-top-1">
+                    <a href="#vision"
+                        class="block rounded px-4 py-2 text-xs uppercase tracking-wider text-gray-600 hover:bg-gray-50 hover:text-amber-600 transition-colors">
+                        Vision & Mission
+                    </a>
+                    <a href="#testimonials"
+                        class="block rounded px-4 py-2 text-xs uppercase tracking-wider text-gray-600 hover:bg-gray-50 hover:text-amber-600 transition-colors">
+                        Testimonials
+                    </a>
+                    <a href="#rewards"
+                        class="block rounded px-4 py-2 text-xs uppercase tracking-wider text-gray-600 hover:bg-gray-50 hover:text-amber-600 transition-colors">
+                        Rewards
+                    </a>
+                </div>
+                }
+            </div>
+
+            <a href="#gallery"
+                class="text-xs uppercase tracking-widest font-semibold text-gray-600 hover:text-amber-600 transition-colors py-4 border-b-2 border-transparent">
+                Gallery
+            </a>
+
+            <a href="#contact"
+                class="text-xs uppercase tracking-widest font-semibold text-gray-600 hover:text-amber-600 transition-colors py-4 border-b-2 border-transparent">
+                Contact
+            </a>
+
+        </nav>
+    </div>
+</header>
+
+
 <main class="bg-gray-50/50 min-h-screen">
 
     <!-- Section 1: Grand Architectural Hero Section (As aligned in image_a2dd27.jpg) -->
@@ -11,7 +90,7 @@
                 We are a leading law firm in financial & business industry. With more than 20 years of experience.
             </p>
             <div class="pt-6">
-                <a routerLink="/contact"
+                <a href="#contact"
                     class="inline-flex items-center justify-center px-8 py-3.5 border border-amber-500/80 bg-amber-500/10 text-amber-400 font-bold tracking-[0.2em] text-xs uppercase transition-colors hover:bg-amber-500 hover:text-gray-900">
                     Contact Now
                 </a>
@@ -238,3 +317,27 @@
         </div>
     </section>
 </main>
+
+
+
+<div id="about">
+    <app-about></app-about>
+</div>
+<div id="practicearea">
+    <app-practice-area></app-practice-area>
+</div>
+<div id="gallery">
+    <app-gallery></app-gallery>
+</div>
+<div id="testimonials">
+    <app-testimonials></app-testimonials>
+</div>
+<div id="rewards">
+    <app-rewards></app-rewards>
+</div>
+<div id="vision">
+    <app-vision></app-vision>
+</div>
+<div id="contact">
+    <app-contact></app-contact>
+</div>

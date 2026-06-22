@@ -1,13 +1,60 @@
-import { Component, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, signal, HostListener } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { About } from "../about/about";
+import { PracticeArea } from "../practice-area/practice-area";
+import { Gallery } from "../gallery/gallery";
+import { Testimonials } from "../testimonials/testimonials";
+import { Rewards } from "../rewards/rewards";
+import { Vision } from "../vision/vision";
+import { Contact } from "../contact/contact";
+
+interface DropdownItem {
+  name: string;
+  route: string;
+}
+
+interface NavItem {
+  label: string;
+  link?: string;
+  dropdown?: DropdownItem[];
+}
 
 @Component({
   selector: 'app-homepage',
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive, About, PracticeArea, Gallery, Testimonials, Rewards, Vision, Contact],
   templateUrl: './homepage.html',
   styleUrl: './homepage.css',
 })
 export class Homepage {
+  isMobileMenuOpen = signal<boolean>(false);
+  activeDropdown = signal<string | null>(null);
+
+  navItems: NavItem[] = [
+    { label: 'Home', link: '/' },
+    { label: 'About Us', link: '/about' },
+    { label: 'Practice Area', link: '/practice' },
+    {
+      label: 'Insights',
+      dropdown: [
+        { name: 'Vision & Mission', route: '/vision' },
+        { name: 'Testimonials', route: '/testimonials' },
+        { name: 'Rewards', route: '/rewards' }
+      ]
+    },
+    { label: 'Gallery', link: '/gallery' },
+    { label: 'Contact', link: '/contact' }
+  ];
+
+  toggleDropdown(label: string, event: Event): void {
+    event.stopPropagation();
+    this.activeDropdown.update(current => current === label ? null : label);
+  }
+
+  @HostListener('document:click')
+  closeDropdowns(): void {
+    this.activeDropdown.set(null);
+  }
+
   practiceAreas = signal([
     { title: 'Bank And Financial', image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=500' },
     { title: 'Car Accident', image: 'https://images.unsplash.com/photo-1516594709564-b9dbb718991b?auto=format&fit=crop&q=80&w=500' },
